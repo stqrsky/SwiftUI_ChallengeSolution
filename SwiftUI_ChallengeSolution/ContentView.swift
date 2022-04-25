@@ -31,23 +31,17 @@ struct ContentView: View {
     
     var body: some View {
         VStack(spacing: 20.0) {
-            Button(action: {
-                buttonsBackground.shuffle()
-            }) {
+            Button(action: shuffleButtonBackground) {
                 Text("1")
                     .roundedNumber(backgroundColor: buttonsBackground.randomElement())
                     .frame(width: 190, alignment: .leading)
             }
-            Button(action: {
-                buttonsBackground.shuffle()
-            }) {
+            Button(action: shuffleButtonBackground) {
                 Text("2")
                     .roundedNumber(backgroundColor: buttonsBackground.randomElement())
                     .frame(width: 190, alignment: .center)
             }
-            Button(action: {
-                    buttonsBackground.shuffle()
-            }) {
+            Button(action: shuffleButtonBackground) {
                 Text("3")
                     .roundedNumber(backgroundColor: buttonsBackground.randomElement())
                     .frame(width: 190, alignment: .trailing)
@@ -56,6 +50,11 @@ struct ContentView: View {
         } //VStack
         
     }
+    
+    func shuffleButtonBackground() {
+        buttonsBackground.shuffle()
+    }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
