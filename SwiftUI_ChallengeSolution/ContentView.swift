@@ -7,26 +7,38 @@
 
 import SwiftUI
 
+struct RoundedNumber: ViewModifier {
+    let backgroundColor: Color
+    func body(content: Content) -> some View {
+        content
+            .padding()
+            .background(backgroundColor)
+            .clipShape(Circle())
+            .font(.headline)
+    }
+}
+
+extension View {
+    func roundedNumber(backgroundColor: Color) -> some View {
+        self
+            .modifier(RoundedNumber(backgroundColor: backgroundColor))
+    }
+}
+
 struct ContentView: View {
     var body: some View {
         VStack(spacing: 20.0) {
             Text("1")
-                .padding()
-                .background(Color.red)
-                .clipShape(Circle())
+                .roundedNumber(backgroundColor: .red)
                 .frame(width: 190, alignment: .leading)
             Text("2")
-                .padding()
-                .background(Color.yellow)
-                .clipShape(Circle())
+                .roundedNumber(backgroundColor: .yellow)
                 .frame(width: 190)
             Text("3")
-                .padding()
-                .background(Color.green)
-                .clipShape(Circle())
+                .roundedNumber(backgroundColor: .green)
                 .frame(width: 190, alignment: .trailing)
         }
-        .font(.headline)
+        
     }
 }
 
