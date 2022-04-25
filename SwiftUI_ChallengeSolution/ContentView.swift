@@ -28,30 +28,40 @@ extension View {
 
 struct ContentView: View {
     @State var buttonsBackground: [Color] = [.red, .green, .yellow, .purple, .orange, .pink, Color(#colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1))]
+    private let alignments: [Alignment] = [.leading, .center, .trailing]
     
     var body: some View {
-        VStack(spacing: 20.0) {
-            Button(action: shuffleButtonBackground) {
-                Text("1")
-                    .roundedNumber(backgroundColor: buttonsBackground.randomElement())
-                    .frame(width: 190, alignment: .leading)
+        VStack {
+            ForEach(1...3, id: \.self) { index in
+                Button(action: shuffleBackgroundsArray) {
+                    Text("\(index)")
+                        .roundedNumber(backgroundColor: buttonsBackground.randomElement())
+                        .frame(width: 190, alignment: alignments[index - 1])
+                }
             }
-            Button(action: shuffleButtonBackground) {
-                Text("2")
-                    .roundedNumber(backgroundColor: buttonsBackground.randomElement())
-                    .frame(width: 190, alignment: .center)
-            }
-            Button(action: shuffleButtonBackground) {
-                Text("3")
-                    .roundedNumber(backgroundColor: buttonsBackground.randomElement())
-                    .frame(width: 190, alignment: .trailing)
-            }
-            
-        } //VStack
+        }
+        
+//        VStack(spacing: 20.0) {
+//            Button(action: shuffleBackgroundsArray) {
+//                Text("1")
+//                    .roundedNumber(backgroundColor: buttonsBackground.randomElement())
+//                    .frame(width: 190, alignment: .leading)
+//            }
+//            Button(action: shuffleBackgroundsArray) {
+//                Text("2")
+//                    .roundedNumber(backgroundColor: buttonsBackground.randomElement())
+//                    .frame(width: 190, alignment: .center)
+//            }
+//            Button(action: shuffleBackgroundsArray) {
+//                Text("3")
+//                    .roundedNumber(backgroundColor: buttonsBackground.randomElement())
+//                    .frame(width: 190, alignment: .trailing)
+//            }
+//        } //VStack
         
     }
     
-    func shuffleButtonBackground() {
+    func shuffleBackgroundsArray() {
         buttonsBackground.shuffle()
     }
     
